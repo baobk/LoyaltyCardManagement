@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.neo.project.LoyaltyCard.mapper.PointConfigMapper">
+    <update id="update" parameterType="int" >
+        update CONFIG set CONFIG = #{point}
+    </update>
+
+    <select id="checkConfig" resultType="int">
+        SELECT COUNT(1) FROM CONFIG
+    </select>
+
+    <insert id="insert" parameterType="int">
+       INSERT INTO CONFIG (CONFIG) VALUES (#{point})
+    </insert>
+
+    <select id="selectConfig" resultType="int">
+        Select CONFIG FROM CONFIG
+    </select>
+</mapper>
