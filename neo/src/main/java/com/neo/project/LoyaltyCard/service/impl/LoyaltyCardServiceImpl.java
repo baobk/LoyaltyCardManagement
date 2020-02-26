@@ -49,7 +49,7 @@ public class LoyaltyCardServiceImpl implements LoyaltyCardService {
 
             for (TransactionDto entry:transactionDtoList) {
                 int id = entry.getLoyaltyCardId();
-                if(list.contains(id)) {
+                if(list.isEmpty() || !list.contains(id)) {
                     list.add(id);
                 }
             }
