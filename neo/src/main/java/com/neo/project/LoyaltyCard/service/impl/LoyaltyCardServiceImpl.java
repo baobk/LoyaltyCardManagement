@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -44,12 +45,16 @@ public class LoyaltyCardServiceImpl implements LoyaltyCardService {
         List<TransactionDto> transactionDtoList = requestDto.getBody();
         if (transactionDtoList.size() > 0) {
 
+            List<Integer> list = new ArrayList<>();
+
             for (TransactionDto entry:transactionDtoList) {
-                LoyaltyCard loyaltyCard = loyaltyCardMapper.selectById(entry.getLoyaltyCardId());
-                if(loyaltyCard != null) {
-                    loyaltyCardMap.put(entry.getLoyaltyCardId(),loyaltyCard);
+                int id = entry.getLoyaltyCardId();
+                if(list.contains(id)) {
+                    list.add(id);
                 }
             }
+
+            List<LoyaltyCard> cardList = loyaltyCardMapper.selectbyListId(list);
 
             for (TransactionDto entry:transactionDtoList) {
                 int id = entry.getLoyaltyCardId();

@@ -2,6 +2,26 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.neo.project.LoyaltyCard.mapper.LoyaltyCardMapper">
 
+    <select id="selectbyListId"  resultType="com.neo.project.LoyaltyCard.pojo.LoyaltyCard">
+        SELECT
+        ID                   as "id",
+        CODE                 as "code",
+        LOYALTY_CART_TYPE_ID as "loyaltyCartTypeId",
+        POINT                as "point",
+        TOTAL_SPENT          as "totalSpent",
+        START_DATE           as "startDate",
+        END_DATE             as "endDate",
+        CREATED_ON           as "createdOn",
+        MODIFIED_ON          as "modifiedOn"
+        FROM LOYALTY_CARD
+        WHERE 1=1
+            and ID in
+            <foreach item="id" collection="ids" index="index" open="(" separator="," close=")">
+                #{id}
+            </foreach>
+    </select>
+
+
   <select id="selectById" parameterType="int" resultType="com.neo.project.LoyaltyCard.pojo.LoyaltyCard">
       SELECT
           ID                   as "id",

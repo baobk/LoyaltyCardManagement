@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.Collection;
 import java.util.List;
 
 @Repository
@@ -12,4 +13,5 @@ import java.util.List;
 public interface LoyaltyCardMapper {
     LoyaltyCard selectById(@Param("id") int id);
     List<LoyaltyCard> selectAll();
+    List<LoyaltyCard> selectbyListId(@Param("ids")List<Integer> ids);
 }

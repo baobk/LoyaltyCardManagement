@@ -1,11 +1,10 @@
-package com.neo.project.LoyaltyCard.Controller;
+package com.neo.project.LoyaltyCard.controller;
 
 
 import com.neo.project.LoyaltyCard.dto.PointConfigDto;
 import com.neo.project.LoyaltyCard.dto.TransactionDto;
 import com.neo.project.LoyaltyCard.dto.core.RequestDTO;
 import com.neo.project.LoyaltyCard.dto.core.ResponseDTO;
-import com.neo.project.LoyaltyCard.exception.ServiceExceptionAdvice;
 import com.neo.project.LoyaltyCard.service.LoyaltyCardService;
 import com.neo.project.LoyaltyCard.service.PointConfigService;
 import lombok.extern.slf4j.Slf4j;
@@ -37,7 +36,7 @@ public class LoyaltyCardController {
     }
 
     @RequestMapping(value="updateLoyaltyCard",method = RequestMethod.POST)
-    public ResponseDTO updateLoyaltyCard(@Valid @RequestBody RequestDTO<List<TransactionDto>> requestDto) throws ServiceExceptionAdvice {
+    public ResponseDTO updateLoyaltyCard(@Valid @RequestBody RequestDTO<List<TransactionDto>> requestDto) throws Exception {
         return  loyaltyCardService.updateLoyaltyCard(requestDto);
     }
 }

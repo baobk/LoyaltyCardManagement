@@ -14,7 +14,7 @@ public class aopRoyaltyCardController {
 
     private static final Logger LOGGER = (Logger) LoggerFactory.getLogger(aopRoyaltyCardController.class);
 
-    @Around("execution(* com.neo.project.LoyaltyCard.Controller.*.*(com.neo.project.LoyaltyCard.dto.core.RequestDTO))")
+    @Around("execution(* com.neo.project.LoyaltyCard.controller.*.*(com.neo.project.LoyaltyCard.dto.core.RequestDTO))")
     public RequestDTO proceedingRoyaltyCardAOP(ProceedingJoinPoint pjp)throws Throwable {
         RequestDTO dto = (RequestDTO) pjp.getArgs()[0];
         try {
