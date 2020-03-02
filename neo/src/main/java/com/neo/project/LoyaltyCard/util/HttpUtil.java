@@ -37,7 +37,7 @@ public class HttpUtil {
         poolingHttpClientConnectionManager.setDefaultMaxPerRoute(DEFAULT_MAX_PER_ROUTE_CONNECTIONS);
     }
 
-    public static JSONObject sendPostDataByJson(final String url, int socketTimeout, JSONObject json){
+    public static JSONObject sendPostDataByJson(final String url, int socketTimeout, String json){
         JSONObject jsonResult = null;
         HttpPost httpPost;
         StringEntity entity;
@@ -62,7 +62,6 @@ public class HttpUtil {
             if(url.substring(0,5).equals("https")){
                 httpClient = getHttpsClient(requestConfig);
             } else {
-
                 httpClient = getHttpClient(requestConfig);
             }
 

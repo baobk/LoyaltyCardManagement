@@ -5,7 +5,7 @@ import com.neo.project.LoyaltyCard.dto.PointConfigDto;
 import com.neo.project.LoyaltyCard.dto.TransactionDto;
 import com.neo.project.LoyaltyCard.dto.core.RequestDTO;
 import com.neo.project.LoyaltyCard.dto.core.ResponseDTO;
-import com.neo.project.LoyaltyCard.service.LoyaltyCardService;
+import com.neo.project.LoyaltyCard.service.TransactionService;
 import com.neo.project.LoyaltyCard.service.PointConfigService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,15 +28,15 @@ public class LoyaltyCardController {
     PointConfigService pointConfigService;
 
     @Autowired
-    LoyaltyCardService loyaltyCardService;
+    TransactionService transactionService;
 
     @RequestMapping(value="updatePointConfig",method = RequestMethod.PUT)
     public ResponseDTO login(@Valid @RequestBody RequestDTO<PointConfigDto> requestDto){
         return  pointConfigService.update(requestDto);
     }
 
-    @RequestMapping(value="updateLoyaltyCard",method = RequestMethod.POST)
+    @RequestMapping(value="addTransactions",method = RequestMethod.POST)
     public ResponseDTO updateLoyaltyCard(@Valid @RequestBody RequestDTO<List<TransactionDto>> requestDto) throws Exception {
-        return  loyaltyCardService.updateLoyaltyCard(requestDto);
+        return  transactionService.handleTransactions(requestDto);
     }
 }
