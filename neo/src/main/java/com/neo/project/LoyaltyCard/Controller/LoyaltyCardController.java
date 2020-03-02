@@ -2,11 +2,11 @@ package com.neo.project.LoyaltyCard.controller;
 
 
 import com.neo.project.LoyaltyCard.dto.PointConfigDto;
-import com.neo.project.LoyaltyCard.dto.TransactionDto;
+import com.neo.project.LoyaltyCard.dto.TransactionListDTO;
 import com.neo.project.LoyaltyCard.dto.core.RequestDTO;
 import com.neo.project.LoyaltyCard.dto.core.ResponseDTO;
-import com.neo.project.LoyaltyCard.service.TransactionService;
 import com.neo.project.LoyaltyCard.service.PointConfigService;
+import com.neo.project.LoyaltyCard.service.TransactionService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @Controller
 @Slf4j
@@ -36,7 +35,7 @@ public class LoyaltyCardController {
     }
 
     @RequestMapping(value="addTransactions",method = RequestMethod.POST)
-    public ResponseDTO updateLoyaltyCard(@Valid @RequestBody RequestDTO<List<TransactionDto>> requestDto) throws Exception {
+    public ResponseDTO updateLoyaltyCard(@Valid @RequestBody RequestDTO<TransactionListDTO> requestDto) throws Exception {
         return  transactionService.handleTransactions(requestDto);
     }
 }

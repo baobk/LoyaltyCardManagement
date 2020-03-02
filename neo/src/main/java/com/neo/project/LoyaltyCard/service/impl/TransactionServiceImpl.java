@@ -3,6 +3,7 @@ package com.neo.project.LoyaltyCard.service.impl;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.neo.project.LoyaltyCard.dto.TransactionDto;
+import com.neo.project.LoyaltyCard.dto.TransactionListDTO;
 import com.neo.project.LoyaltyCard.dto.core.RequestDTO;
 import com.neo.project.LoyaltyCard.dto.core.ResponseDTO;
 import com.neo.project.LoyaltyCard.exception.ServiceExceptionAdvice;
@@ -40,7 +41,7 @@ public class TransactionServiceImpl implements TransactionService {
     LoyaltyCardTypeMapper loyaltyCardTypeMapper;
 
     @Override
-    public ResponseDTO handleTransactions(RequestDTO<List<TransactionDto>> requestDto) throws ServiceExceptionAdvice {
+    public ResponseDTO handleTransactions(RequestDTO<TransactionListDTO> requestDto) throws ServiceExceptionAdvice {
         ResponseDTO resp = new ResponseDTO();
         Map<Integer, LoyaltyCard> loyaltyCardMap = new HashMap<>();
         int pointConfig = pointConfigMapper.selectConfig();
@@ -50,7 +51,7 @@ public class TransactionServiceImpl implements TransactionService {
         if (StringUtils.isEmpty(loyaltyCardList.size()))
             throw new ServiceExceptionAdvice("LCT","There is no LoyaltyCard in System");
 
-        List<TransactionDto> transactionDtoList = requestDto.getBody();
+        List<TransactionDto> transactionDtoList = requestDto.getBody().getListOfTransaction();
         if (transactionDtoList.size() > 0) {
 
             List<Integer> list = new ArrayList<>();
