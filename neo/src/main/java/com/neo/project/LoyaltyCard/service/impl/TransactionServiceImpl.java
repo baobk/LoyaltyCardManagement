@@ -86,12 +86,13 @@ public class TransactionServiceImpl implements TransactionService {
             List<LoyaltyCard> loyaltyCards = loyaltyCardMap.values().stream().collect(Collectors.toList());
 
             JSONObject result = HttpUtil.sendPostDataByJson(remoteHost,10000, JSON.toJSONString(loyaltyCards));
+
             if (result != null){
                 if(!result.getString("code").equals("00000")) {
                     throw new ServiceExceptionAdvice("LCT","Failed update loyalty card");
                 }
             } else {
-                throw new ServiceExceptionAdvice("LCT","There is no response result after call remote service");
+                throw new ServiceExceptionAdvice("LCT","There is no response result after call remote provider");
             }
         }
 
